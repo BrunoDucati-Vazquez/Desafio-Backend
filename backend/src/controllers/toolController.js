@@ -34,7 +34,7 @@ class toolController {
         const { id } = req.params;  // Extract `id` from the URL
 
         try {
-            const deletedTool = await toolService.deleteTool(id);  // Call service to delete the tool by id
+            const deletedTool = await toolService.deleteTool(id);
             if (deletedTool) {
                 return res.status(200).json({});
             } else {
@@ -46,4 +46,4 @@ class toolController {
     }
 }
 
-export default toolController;  // Make sure to export the controller correctly
+export default toolController;
