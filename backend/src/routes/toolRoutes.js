@@ -5,4 +5,6 @@ const router = express.Router();
 // List all clients
 router.get('/', toolController.listTools);
 
+router.post('/', toolController.createTool);
+
 export default router;

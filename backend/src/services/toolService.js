@@ -8,6 +8,10 @@ class toolService {
     static async listToolsByTag(tag) {
         return await toolRepository.getToolsByTag(tag);
     }
+
+    static async createTool(data) {
+        return await toolRepository.createTool(data);
+    }
 }
 
 export default toolService;
