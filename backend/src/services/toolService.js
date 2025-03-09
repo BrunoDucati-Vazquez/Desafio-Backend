@@ -12,6 +12,10 @@ class toolService {
     static async createTool(data) {
         return await toolRepository.createTool(data);
     }
+
+    static async deleteTool(id) {
+        return await toolRepository.deleteTool(id);  
+    }
 }
 
 export default toolService;

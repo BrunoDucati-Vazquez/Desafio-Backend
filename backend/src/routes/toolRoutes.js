@@ -7,4 +7,6 @@ router.get('/', toolController.listTools);
 
 router.post('/', toolController.createTool);
 
+router.delete('/:id', toolController.deleteTool);
+
 export default router;

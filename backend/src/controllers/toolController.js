@@ -29,6 +29,21 @@ class toolController {
             res.status(400).json({ error: error.message }); // Send error message if something goes wrong
         }
     }
+
+    static async deleteTool(req, res) {
+        const { id } = req.params;  // Extract `id` from the URL
+
+        try {
+            const deletedTool = await toolService.deleteTool(id);  // Call service to delete the tool by id
+            if (deletedTool) {
+                return res.status(200).json({});
+            } else {
+                return res.status(404).json({ message: 'Tool not found' });
+            }
+        } catch (error) {
+            return res.status(400).json({ error: error.message });
+        }
+    }
 }
 
 export default toolController;  // Make sure to export the controller correctly

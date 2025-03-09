@@ -13,12 +13,20 @@ class toolRepository {
     }
 
     static async createTool({ title, link, description, tags }) {
-        // Correct query syntax with placeholders $1, $2, $3, $4
+
         const result = await pool.query(
             "INSERT INTO tools (title, link, description, tags) VALUES ($1, $2, $3, $4) RETURNING *", 
             [title, link, description, tags]
         );
         return result.rows[0]; // Return the created tool
+    }
+
+    static async deleteTool(id) {
+        const result = await pool.query(
+            "DELETE FROM tools WHERE id = $1 RETURNING *", [id]
+        );
+        
+        return result.rows[0];  // Returning the deleted tool data
     }
 }
 
