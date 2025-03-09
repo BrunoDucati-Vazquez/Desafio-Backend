@@ -3,6 +3,6 @@ import toolController from '../controllers/toolController.js';
 const router = express.Router();
 
 // List all clients
-router.get('/', toolController.listAllTools);
+router.get('/', toolController.listTools);
 
 export default router;
