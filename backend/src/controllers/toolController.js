@@ -1,6 +1,30 @@
 import toolService from "../services/toolService.js";
 
 class toolController {
+
+    /**
+     * @swagger
+     * /tools:
+     *   get:
+     *     summary: List all tools or filter by tag
+     *     parameters:
+     *       - in: query
+     *         name: tag
+     *         schema:
+     *           type: string
+     *         description: Filter tools by tag
+     *     responses:
+     *       200:
+     *         description: A list of tools
+     *         content:
+     *           application/json:
+     *             schema:
+     *               type: array
+     *               items:
+     *                 $ref: "#/components/schemas/Tool"
+     *       500:
+     *         description: Server error
+     */
     static async listTools(req, res) {
         try {
             const tag = req.query.tag;  // Access the query parameter `tag`
@@ -19,7 +43,29 @@ class toolController {
             res.status(400).json({ error: error.message });
         }
     }
-
+    /**
+     * @swagger
+     * /tools:
+     *   post:
+     *     summary: Create a new tool
+     *     requestBody:
+     *       required: true
+     *       content:
+     *         application/json:
+     *           schema:
+     *             $ref: "#/components/schemas/Tool"
+     *     responses:
+     *       201:
+     *         description: Tool created successfully
+     *         content:
+     *           application/json:
+     *             schema:
+     *               $ref: "#/components/schemas/Tool"
+     *       400:
+     *         description: Bad request (missing fields)
+     *       500:
+     *         description: Server error
+     */
     static async createTool(req, res) {
         try {
             const tool = req.body;
@@ -27,6 +73,19 @@ class toolController {
             return res.status(201).json(createdTool); // Return created tool with 201 status
         } catch (error) {
             res.status(400).json({ error: error.message }); // Send error message if something goes wrong
+        }
+    }
+
+    static async deleteTool(req, res) {
+        try {
+            const { id } = req.params;
+            const deletedTool = await toolService.deleteTool(id);
+            if (!deletedTool) {
+                return res.status(404).json({ error: "Tool not found" });
+            }
+            return res.status(204).send();
+        } catch (error) {
+            return res.status(500).json({ error: "Failed to delete tool", details: error.message });
         }
     }
 
