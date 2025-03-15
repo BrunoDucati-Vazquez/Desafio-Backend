@@ -2,8 +2,8 @@ import pool from "../config/database.js"
 
 class toolRepository {
     static async getAllTools() {
-        const result = await pool.query("select * FROM tools")
-        return result.rows;
+        const result = await pool.query("select * from tools;");
+        return result.rows; // Return the rows directly
     }
 
     static async getToolsByTag(paramTag) {
