@@ -11,7 +11,10 @@ O desafio consistia em criar uma API RESTful para gerenciar uma lista de ferrame
 - Filtrar ferramentas por tags.
 - Excluir uma ferramenta específica.
 
-Além disso, a API deveria ser protegida por autenticação via token JWT para operações sensíveis, como a exclusão de ferramentas.
+## Bônus realizados
+
+- Conteinerização da aplicação;
+- Autenticação e autorização (**OAuth, JWT**);
 
 ## 🛠️ Ferramentas Utilizadas
 
