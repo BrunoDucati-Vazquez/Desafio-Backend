@@ -1,0 +1,37 @@
+version: '3.8'
+
+services:
+  # Serviço para o banco de dados PostgreSQL
+  db:
+    image: postgres:13
+    container_name: meu-postgres
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: projeto02
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Serviço para a aplicação Node.js
+  backend:
+    build: ./backend
+    container_name: meu-backend
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: admin
+      DB_PASSWORD: admin
+      DB_NAME: projeto02
+    depends_on:
+      - db
+    volumes:
+      - ./backend:/usr/src/app
+      - /usr/src/app/node_modules
+
+# Volume para persistir os dados do PostgreSQL
+volumes:
+  postgres_data:
