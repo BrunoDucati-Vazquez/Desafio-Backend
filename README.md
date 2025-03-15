@@ -13,8 +13,6 @@ O desafio consistia em criar uma API RESTful para gerenciar uma lista de ferrame
 
 Além disso, a API deveria ser protegida por autenticação via token JWT para operações sensíveis, como a exclusão de ferramentas.
 
-Para melhores informações do desafio: https://bossabox.notion.site/Back-end-0b2c45f1a00e4a849eefe3b1d57f23c6
-
 ## 🛠️ Ferramentas Utilizadas
 
 - **Node.js**: Ambiente de execução JavaScript utilizado para desenvolver a API.
